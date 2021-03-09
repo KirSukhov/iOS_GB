@@ -1,0 +1,56 @@
+import UIKit
+// 1 задача
+var numberArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+func f1(){
+for chislo in numberArray{
+if chislo % 2 == 0 {
+print("\(chislo) четное число")
+    } else {
+print("\(chislo) нечетное число")
+    }
+}
+}
+f1()
+//2 задача
+func f2(){
+for tridel in numberArray{
+if tridel % 3 == 0 {
+print("\(tridel) делится на 3 без остатка")
+    } else {
+print("\(tridel) делится на 3 с остатком")
+    }
+}
+}
+f2()
+
+
+
+//3 задача
+var sto: Array<Int> = []
+for i in 1...100{
+    sto.append(i)
+}
+print(sto)
+//4 задача
+var del = sto.filter {$0 % 2 != 0 && $0 % 3 == 0}
+print(del)
+
+
+//5 задача
+//я хотел сделать хитро по аналогии с 3-ей, но какая-то фигня вышла, и я запутался
+func Fibo(){
+    var FiboArray: Array<Int> = []
+    for a in 2...100{
+            FiboArray.append(FiboArray[a - 1] + FiboArray[a - 2])
+        }
+}
+print(Fibo)
+
+//6 задача не успел разобраться до конца
+"горшочек вари!" " ^_^ "
+
+
+
+
+
