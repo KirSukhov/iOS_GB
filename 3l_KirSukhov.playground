@@ -1,0 +1,128 @@
+import UIKit
+
+enum engineState {
+    case start, stop
+}
+
+enum windowState {
+    case open, close
+}
+
+enum trunkState {
+    case full, empty
+}
+
+struct sportCar {
+    let brand : String
+    let model : String
+    let releaseyear : Int
+    var color : String
+    mutating func changeColor(c:String) {
+        switch c {
+        case "white":
+            self.color = "белый"
+        case "black":
+            self.color = "черный"
+        case "red":
+            self.color = "красный"
+        default:
+            print("упс, что-то пошло не так")
+        }
+    }
+    var trunkVolume : Double {
+        willSet {
+            if (trunkState == .empty) && (trunkVolume > 0) && (trunkVolume != 0) && (newValue < trunkVolume) {
+                let space = trunkVolume - newValue
+                print ("В багажнике у \(brand) \(model) осталось \(space) места")
+            } else { print("Сорян но у \(brand) \(model) багажник забит.")}
+        }
+    }
+    var engineState : engineState {
+        willSet {
+            if newValue == .start {
+                print ("У \(brand) \(model) включен двигатель")
+            } else {print("У \(brand) \(model) выключен двигатель")}
+        }
+    }
+    var windowState : windowState {
+        willSet {
+            if newValue == .open {
+                print("У \(brand)\(model) открыты окна")
+            } else { print("У \(brand)\(model) закрыты окна") }
+        }
+    }
+    var trunkState : trunkState
+    mutating func emptyTrunck() {
+        self.trunkState = .empty
+        print ("У \(brand)\(model) пустой багажник")
+    }
+}
+
+struct TrunkCar {
+    let brand : String
+    let model : String
+    let releaseyear : Int
+    var color : String
+    mutating func changeColor(c:String) {
+        switch c {
+        case "white":
+            self.color = "белый"
+        case "black":
+            self.color = "черный"
+        case "red":
+            self.color = "красный"
+        default:
+            print("упс, что-то пошло не так")
+        }
+    }
+    var bodyVolume : Double {
+        willSet {
+            if (trunkState == .empty) && (bodyVolume > 0) && (bodyVolume != 0) && (newValue < bodyVolume) {
+                let space = bodyVolume - newValue
+                print ("В кузове \(brand) \(model) осталось \(space) места")
+            } else { print("Сорян, но \(brand) \(model) забит под завязку.")}
+        }
+    }
+    var engineState : engineState {
+        willSet {
+            if newValue == .start {
+                print ("У \(brand)\(model) включен двигатель")
+            } else {print("У \(brand)\(model) выключен двигатель")}
+        }
+    }
+    var windowState : windowState {
+        willSet {
+            if newValue == .open {
+                print("У \(brand)\(model) открыты окна")
+            } else { print("У \(brand)\(model) закрыты окна") }
+        }
+    }
+    var trunkState : trunkState
+    mutating func emptyTrunck() {
+        self.trunkState = .empty
+        print ("У \(brand)\(model) пустой кузов")
+    }
+}
+
+var car1 = sportCar(brand: "Hyundai", model: "Solaris", releaseyear: 2013, color: "black", trunkVolume: 580.0 , engineState: .stop, windowState: .open, trunkState: .empty)
+var car2 = sportCar(brand: "Mazda", model: "3", releaseyear: 2017, color: "red", trunkVolume: 480.0, engineState: .stop, windowState: .close, trunkState: .full)
+
+var truck1 = TrunkCar(brand: "Kamaz", model: "V99", releaseyear: 2015, color: "white", bodyVolume: 100000.0, engineState: .start, windowState: .open, trunkState: .full)
+var truck2 = TrunkCar(brand: "Renault", model: "FV14", releaseyear: 2017, color: "red", bodyVolume: 150000.0, engineState: .start, windowState: .close, trunkState: .empty)
+
+
+car1.engineState = .start
+car1.trunkVolume = 340.0
+car1.changeColor (c: "red")
+car2.trunkVolume = 80.9
+car2.windowState = .open
+car2.changeColor (c: "black")
+car2.emptyTrunck()
+
+truck1.engineState = .stop
+truck1.windowState = .close
+truck2.engineState = .stop
+truck2.bodyVolume = 5678908
+
+
+print ("Инфо по первой тачке: \(car1.brand) \(car1.model), год выпуска: \(car1.releaseyear), цвет: \(String(describing: car1.color)), свободного места в багажнике: \(car1.trunkVolume), двигатель \(car1.engineState)")
