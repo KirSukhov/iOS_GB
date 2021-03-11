@@ -1,5 +1,5 @@
 import UIKit
-
+//все задания смешались в одно в итоге ()
 enum engineState {
     case start, stop
 }
@@ -111,12 +111,12 @@ var truck1 = TrunkCar(brand: "Kamaz", model: "V99", releaseyear: 2015, color: "w
 var truck2 = TrunkCar(brand: "Renault", model: "FV14", releaseyear: 2017, color: "red", bodyVolume: 150000.0, engineState: .start, windowState: .close, trunkState: .empty)
 
 
-car1.engineState = .start
+car1.engineState = .start //не смог сделать стрингу чтобы не крашилось (
 car1.trunkVolume = 340.0
-car1.changeColor (c: "red")
+car1.changeColor (c: "red") //вот тут цвет в консоли не выводит(( почему?
 car2.trunkVolume = 80.9
 car2.windowState = .open
-car2.changeColor (c: "black")
+car2.changeColor (c: "black") //такая же тема с цветом
 car2.emptyTrunck()
 
 truck1.engineState = .stop
