@@ -1,0 +1,48 @@
+import UIKit
+
+enum WindowState{
+    case open, close
+}
+enum TrunkState{
+    case full, empty
+}
+class Car{
+    var brand: String
+    var release: Int
+    init(brand: String, release: Int){
+        self.brand = brand
+        self.release = release
+    }
+}
+class trunkCar: Car{
+    var trunk: TrunkState
+    init(brand: String, release: Int, trunk: TrunkState){
+        self.trunk = trunk
+        super.init(brand: brand, release: release)
+    }
+    func trunkState(){
+        if trunk == .full {
+            print("Багажник полон")
+        } else{
+            print("Багажник пуст")
+        }
+    }
+}
+class sportCar: Car{
+    var window: WindowState
+    init(brand: String, release: Int, window: WindowState){
+        self.window = window
+        super.init(brand: brand, release: release)
+    }
+    func windowState(){
+        if window == .open {
+            print("Окно открыто")
+        } else{
+            print("Окно закрыто")
+        }
+    }
+}
+let maz = trunkCar(brand: "MAZ", release: 2011, trunk: .full)
+maz.trunkState()
+let hyundai = sportCar(brand: "hyundai", release: 2013, window: .close)
+hyundai.windowState()
