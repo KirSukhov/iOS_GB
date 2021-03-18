@@ -1,0 +1,79 @@
+import UIKit
+
+enum WindowState {
+    case open, close
+}
+
+enum EngineState {
+    case on, off
+}
+
+enum TrunkState {
+    case full, empty
+}
+
+enum BlinkerState {
+    case on, off
+}
+
+protocol Car: AnyObject {
+    var brand: String {get}
+    var release: Int {get}
+    var engine: EngineState {get set}
+    var window: WindowState {get set}
+}
+
+extension Car {
+    func EngineAction (engine:EngineState) {
+        self.engine = engine
+    }
+    func WindowAction (window:WindowState) {
+        self.window = window
+    }
+}
+
+class TrunkCar: Car, CustomStringConvertible {
+    var brand: String = ""
+    var release: Int = 0
+    var engine: EngineState = .off
+    var window: WindowState = .open
+    init(brand: String, release: Int, engine: EngineState, window: WindowState) {
+        self.brand = brand
+        self.release = release
+        self.engine = engine
+        self.window = window
+    }
+    
+    var trunk: TrunkState = .empty
+    var description: String {
+        return "\(brand): engine is \(engine), windows is \(window), trunk is \(trunk), release date is \(release)"
+        }
+}
+
+class SportCar: Car, CustomStringConvertible {
+    var brand: String = ""
+    var release: Int = 0
+    var engine: EngineState = .off
+    var window: WindowState = .open
+    init(brand: String, release: Int, engine: EngineState, window: WindowState) {
+        self.brand = brand
+        self.release = release
+        self.engine = engine
+        self.window = window
+    }
+    
+    var blink: BlinkerState = .off
+    var description: String {
+        return "\(brand): engine is \(engine), windows is \(window), blinkers is \(blink), release date is \(release)"
+        }
+}
+
+var BMW = SportCar (brand: "BMW", release: 2019, engine: .on, window: .close)
+var MAZ = TrunkCar (brand: "MAZ", release: 2005, engine: .off, window: .open)
+
+BMW.EngineAction(engine: .on)
+BMW.blink = .off
+MAZ.WindowAction(window: .open)
+MAZ.trunk = .full
+print(BMW.description)
+print(MAZ.description)
