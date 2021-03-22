@@ -1,0 +1,41 @@
+import UIKit
+
+struct Queue<T> {
+    var myArray = [T]()
+    var count: Int{
+        return myArray.count
+    }
+    mutating func add(_ number: T) {
+        myArray.append(number)
+    }
+    mutating func add(_ number: [T]) {
+        self.myArray.append(contentsOf: number)
+    }
+    mutating func remove() -> T?{
+        if myArray.count > 0 {
+            return myArray.removeFirst()
+        } else {
+            return nil
+        }
+    }
+  
+    
+    func filter(array: [T], predicateSomeClosure: (T) -> Bool) -> [T] {
+        var tmpArray = [T]()
+        for element in array{
+            if predicateSomeClosure(element){
+                tmpArray.append(element)
+            }
+        }
+        return tmpArray
+    }
+}
+var queue = Queue<Int>()
+queue.add([1,2,3,4,5,6,7,8,9])
+//let sum = queue.reduce(0, +)  я пробовал применить и поиграться со всеми ФВП, но никак xcode с данным массивом не видит этих стандартных ФВП ((
+let filterQueue = queue.filter(array: queue.myArray) {(i: Int) -> Bool in
+    return i % 2 == 1 //только так получается воссоздать ФВП (через функцию в структуре), а вот стандартные встроенные почему-то не запускаются. Почему?
+//
+}
+print(queue)
+print(filterQueue)
