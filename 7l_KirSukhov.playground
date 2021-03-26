@@ -1,0 +1,35 @@
+import UIKit
+
+enum wowProblem: Error{
+    case lowenergy
+    case lowmana
+}
+class wow{
+    var energy: Int
+    var mana: Int
+    init(energy: Int, mana: Int) {
+        self.energy = energy
+        self.mana = mana
+    }
+    func manaState() throws {
+        if mana < 20 {
+            throw wowProblem.lowmana
+        }
+    }
+    func energyState() throws {
+        if energy < 20 {
+                throw wowProblem.lowenergy
+        }
+    }
+}
+var discovery = wow(energy: 15, mana: 10)
+do{
+   try discovery.manaState()
+} catch wowProblem.lowmana {
+    print("У меня мало маны")
+}
+do{
+    try discovery.energyState()
+} catch wowProblem.lowenergy {
+    print("Не хватает энергии")
+}
