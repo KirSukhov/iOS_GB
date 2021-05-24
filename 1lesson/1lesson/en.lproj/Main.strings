@@ -1,0 +1,9 @@
+
+/* Class = "UIButton"; normalTitle = "Enter"; ObjectID = "Lhw-yU-DpR"; */
+"Lhw-yU-DpR.normalTitle" = "Enter";
+
+/* Class = "UILabel"; text = "Login"; ObjectID = "WcZ-zX-CGF"; */
+"WcZ-zX-CGF.text" = "Login";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "hbT-63-x87"; */
+"hbT-63-x87.text" = "Password";
